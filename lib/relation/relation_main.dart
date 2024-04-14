@@ -220,14 +220,20 @@ class RelationMain extends StatelessWidget {
                           Row(
                             children: [
                               Image.asset('assets/images/emotion/checklist_good_02.png', height: 30, width: 30, ),
-                              Text('   : 친하거나 친하게 지내고 싶은 경우', style: TextStyle(fontFamily: 'Jua', color: Colors.white),),
+                              Text('    친하거나 친하게 지내고 싶은 경우', style: TextStyle(fontFamily: 'Jua', color: Colors.white),),
                             ],
                           ),
                           SizedBox(height: 5,),
                           Row(
                             children: [
                               Image.asset('assets/images/emotion/checklist_bad_02.png', height: 30, width: 30, ),
-                              Text('   : 사이가 안 좋거나 나를 힘들게 하는 경우', style: TextStyle(fontFamily: 'Jua', color: Colors.white),),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('    사이가 안 좋거나 나를 힘들게 하는 경우', style: TextStyle(fontFamily: 'Jua', color: Colors.white),),
+                                  Text('    길게 눌러서 내용 수정', style: TextStyle(fontFamily: 'Jua', color: Colors.orangeAccent),),
+                                ],
+                              ),
                             ],
                           ),
                         ],

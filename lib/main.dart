@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
         MainController.to.active_screen.value == 'pokemon_main' ? PokemonMain() :
         MainController.to.active_screen.value == 'pokemon_roulette' ? PokemonRoulette() :
         MainController.to.active_screen.value == 'point_main' ? PointMain() :
-        MainController.to.active_screen.value == 'point_main_student' ? PointMainStudent() :
+        // MainController.to.active_screen.value == 'point_main_student' ? PointMainStudent() :
         MainController.to.active_screen.value == 'pointer_main' ? PointerMain() :
         MainController.to.active_screen.value == 'pointer_add' ? PointerAdd() :
         MainController.to.active_screen.value == 'pointer_detail' ? PointerDetail() :

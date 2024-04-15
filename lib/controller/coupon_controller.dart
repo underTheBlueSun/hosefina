@@ -39,20 +39,20 @@ class CouponController extends GetxController {
       'number': GetStorage().read('number'),'name': GetStorage().read('name'),'icon': icon.value, 'title': title, 'point': point, });
 
     /// 포인트 점수 차감
-    delPoint();
+    // delPoint();
 
   }
 
-  void delPoint() async{
-    await FirebaseFirestore.instance.collection('point').where('class_code', isEqualTo: GetStorage().read('class_code'))
-        .where('number', isEqualTo: GetStorage().read('number')).get().then((QuerySnapshot snapshot) {
-      if (snapshot.docs.length > 0) {
-        if (snapshot.docs.first['point'] > 0) {
-          FirebaseFirestore.instance.collection('point').doc(snapshot.docs.first.id).update({'point': FieldValue.increment(-point)});
-        }
-      }
-    });
-  }
+  // void delPoint() async{
+  //   await FirebaseFirestore.instance.collection('point').where('class_code', isEqualTo: GetStorage().read('class_code'))
+  //       .where('number', isEqualTo: GetStorage().read('number')).get().then((QuerySnapshot snapshot) {
+  //     if (snapshot.docs.length > 0) {
+  //       if (snapshot.docs.first['point'] > 0) {
+  //         FirebaseFirestore.instance.collection('point').doc(snapshot.docs.first.id).update({'point': FieldValue.increment(-point)});
+  //       }
+  //     }
+  //   });
+  // }
 
 
 

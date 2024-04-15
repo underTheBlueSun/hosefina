@@ -116,6 +116,55 @@ class RelationMain extends StatelessWidget {
 
   }
 
+  void checklist2Dialog(context, index, content) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          content: Container(
+            height: 250,
+            child: Material(
+              color: Colors.transparent,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // Text('${name}와 왜 사이가 안좋은가요?', style: TextStyle(fontFamily: 'Jua', color: Colors.orangeAccent),),
+                  TextField(
+                    controller: TextEditingController(text: content),
+                    autofocus: true,
+                    cursorColor: Colors.black,
+                    onChanged: (value) {
+                      RelationController.to.content = value;
+                    },
+                    style: TextStyle(color: Colors.black.withOpacity(0.5), fontFamily: 'Jua' , fontSize: 17, ),
+                    maxLines: 7,
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.transparent ),),
+                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.transparent ),),
+                      contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(isDefaultAction: true, child: Text('닫기'), onPressed: () {
+              Navigator.pop(context);
+            }),
+            CupertinoDialogAction(isDefaultAction: true, child: Text('저장'), onPressed: () {
+              RelationController.to.addChecklist(index, -1);
+              Navigator.pop(context);
+            })
+
+          ],
+        );
+      },
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -253,7 +302,7 @@ class RelationMain extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: MainController.to.attendances.length,
                         itemBuilder: (BuildContext context, int index) {
-                          var doc = MainController.to.attendances[index];
+                          var attendance_doc = MainController.to.attendances[index];
                           String checklist_good = 'checklist_good_01';
                           String checklist_bad = 'checklist_bad_01';
                           if (RelationController.to.checklist_points[index] == 1) {
@@ -269,7 +318,7 @@ class RelationMain extends StatelessWidget {
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(doc['name'], style: TextStyle(color: Colors.black.withOpacity(0.5), fontFamily: 'Jua', fontSize: 17),),
+                              Text(attendance_doc['name'], style: TextStyle(color: Colors.black.withOpacity(0.5), fontFamily: 'Jua', fontSize: 17),),
 
                               Row(
                                 children: [
@@ -289,6 +338,12 @@ class RelationMain extends StatelessWidget {
                                   ),
                                   SizedBox(width: 15,),
                                   GestureDetector(
+                                    onLongPress: () {
+                                      if (RelationController.to.checklist_points[index] == -1) {
+                                        RelationController.to.content = RelationController.to.checklist_cs[index];
+                                        checklist2Dialog(context, index, RelationController.to.checklist_cs[index]);
+                                      }
+                                    },
                                     onTap: () {
                                       HapticFeedback.lightImpact();
                                       if (RelationController.to.checklist_points[index] == -1) {
@@ -296,7 +351,7 @@ class RelationMain extends StatelessWidget {
                                         RelationController.to.addChecklist(index, 0);
                                       }else {
                                         // RelationController.to.addChecklist(index, -1);
-                                        checklistDialog(context, doc['name'], index);
+                                        checklistDialog(context, attendance_doc['name'], index);
                                       }
 
                                     },

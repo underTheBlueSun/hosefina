@@ -586,6 +586,20 @@ class AppBarWidget extends StatelessWidget {
           Container(width: 50, height: 30, color: Colors.transparent, child: Icon(Icons.cancel, color: Colors.transparent,size: 30,),),
         ],
       );
+    }else if (MainController.to.active_screen.value == 'coupon_main' && GetStorage().read('job') == 'student') {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              MainController.to.active_screen.value = 'main_list';
+            },
+            child: Container(width: 50, height: 30, color: Colors.transparent, child: Icon(Icons.cancel, color: Colors.white.withOpacity(0.7),size: 30,),),
+          ),
+          Text('내가 구매한 쿠폰', style: TextStyle(color: Colors.white, fontFamily: 'Jua', fontSize: 20),),
+          PointWidget(),
+        ],
+      );
     }else if (MainController.to.active_screen.value == 'coupon_main_teacher') {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -25,12 +25,17 @@ class CouponBuy extends StatelessWidget {
             height: 100,
             child: Material(
               color: Colors.transparent,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
                 children: [
-                  Icon(Icons.star, color: Color(0xFFE490A0),),
-                  Text('${CouponController.to.point.toString()}', style: TextStyle(color: Color(0xFFE490A0), fontSize: 25, fontFamily: 'Jua'),),
-                  Text('점 차감됩니다', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Jua'),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.star, color: Color(0xFFE490A0),),
+                      Text('${CouponController.to.point.toString()}', style: TextStyle(color: Color(0xFFE490A0), fontSize: 25, fontFamily: 'Jua'),),
+                      Text('점 차감됩니다', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Jua'),),
+                    ],
+                  ),
+                  Text('구매하시겠습니까?', style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: 'Jua'),),
                 ],
               ),
             ),
@@ -97,7 +102,7 @@ class CouponBuy extends StatelessWidget {
                     CouponController.to.icon.value = doc['icon'];
                     CouponController.to.point = doc['point'];
 
-                    if (PointController.to.point >= CouponController.to.point) {
+                    if (PointController.to.point_total >= CouponController.to.point) {
                       buyDialog(context);
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(

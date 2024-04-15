@@ -122,8 +122,9 @@ class PointWidget extends StatelessWidget {
                               children: [
                                 Icon(Icons.star, color: Color(0xFFE490A0),),
                                 SizedBox(width: 3,),
+                                // Text('${PointController.to.diary_point.toString()}/${PointController.to.point_point.toString()}/'
+                                //     '${PointController.to.coupon_point.toString()}/${PointController.to.temper_point.toString()}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, ),),
                                 Text(PointController.to.point_total.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, ),),
-                                // Text((PointController.to.diary_point + PointController.to.point_point).toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, ),),
                               ],);
                           }
                       );

@@ -489,7 +489,8 @@ class SubjectController extends GetxController {
     FirebaseFirestore.instance.collection('subject_diary').doc(subject_diary_id).delete();
   }
 
-  Future<void> saveSubjectDiary(number) async{
+  /// 24.4.16:저장이 잘 안되는 경우가 있어서 future 빼봤음.
+  void saveSubjectDiary(number) async{
     DocumentReference doc = await FirebaseFirestore.instance.collection('subject_diary')
         .add({'date': mmdd_yoil.value, 'class_code': GetStorage().read('class_code'),  'number': number, 'content': content, 'comment' : [], 'like' : [] })
         .catchError((error) { print('saveSubjectDiary() : ${error}'); });

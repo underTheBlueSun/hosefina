@@ -54,7 +54,7 @@ class SubjectAdd extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black, ),
-                  onPressed: () async{
+                  onPressed: () {
                     SubjectController.to.saveSubjectDiary(GetStorage().read('number'));
                     MainController.to.active_screen.value = 'subject_main';
                   },
